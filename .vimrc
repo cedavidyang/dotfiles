@@ -33,9 +33,9 @@ let mapleader = ","
 " Bind nohl
 " Removes highlight of your last search
 " ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-"" noremap <C-n> :nohl<CR>
-"" vnoremap <C-n> :nohl<CR>
-"" inoremap <C-n> :nohl<CR>
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 
 " Quicksave command
@@ -206,3 +206,28 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 set nofoldenable
+
+
+" Python automatic syntax checking
+" mkdir -p ~/.vim/bundle
+" git clone https://github.com/scrooloose/syntastic.git
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" Run python script from vim
+nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+
+
+" Conque for bash or ipython buffer
+" mkdir -p ~/.vim/autoload
+" Download the latest vimball from http://conque.googlecode.com
+" Open the .vmb file with Vim and run the following commands:
+"     :so %
+"     :q
+"" let g:ConqueTerm_ExecFileKey = '<F11>'
