@@ -88,7 +88,7 @@ color wombat256mod
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
-filetype off
+filetype on
 filetype plugin indent on
 syntax on
 
@@ -143,6 +143,8 @@ set smartcase
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
 
+" undo changes after switching to a new buffer
+:set hidden
 
 " ============================================================================
 " Python IDE Setup
@@ -234,3 +236,22 @@ nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 "     :so %
 "     :q
 "" let g:ConqueTerm_ExecFileKey = '<F11>'
+
+" ============================================================================
+" LaTeX IDE Setup
+" ============================================================================
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+map <D-j> <Plug>IMAP_JumpForward
+map <D-J> <Plug>IMAP_JumpBack
+imap <D-j> <Plug>IMAP_JumpForward
+imap <D-J> <Plug>IMAP_JumpBack
